@@ -27,7 +27,6 @@ from cosyvoice.utils.file_utils import read_lists, read_json_lists
 class Processor(IterableDataset):
 
     def __init__(self, source, f, *args, **kw):
-        assert callable(f)
         self.source = source
         self.f = f
         self.args = args
@@ -40,12 +39,10 @@ class Processor(IterableDataset):
         """ Return an iterator over the source dataset processed by the
             given processor.
         """
-        assert self.source is not None
-        assert callable(self.f)
+
         return self.f(iter(self.source), *self.args, **self.kw)
 
     def apply(self, f):
-        assert callable(f)
         return Processor(self, f, *self.args, **self.kw)
 
 
@@ -57,8 +54,7 @@ class DistributedSampler:
         self.shuffle = shuffle
         self.partition = partition
 
-    def update(self):
-        assert dist.is_available()
+    def update(self):)
         if dist.is_initialized():
             self.rank = dist.get_rank()
             self.world_size = dist.get_world_size()
