@@ -1,6 +1,4 @@
 import argparse
-import os
-import sys
 import re
 from functools import partial
 import time
@@ -21,9 +19,6 @@ from cosyvoice.cli.cosyvoice import CosyVoice
 from cosyvoice.utils.file_utils import load_wav
 from cosyvoice.utils.frontend_utils import (contains_chinese, replace_blank, replace_corner_mark,remove_bracket, spell_out_number, split_paragraph)
 from utils.word_utils import word_to_dataset_frequency, char2phn, always_augment_chars
-
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-sys.path.append('{}/third_party/Matcha-TTS'.format(ROOT_DIR))
 
 ####new normalize
 class CustomCosyVoiceFrontEnd(CosyVoiceFrontEnd):
